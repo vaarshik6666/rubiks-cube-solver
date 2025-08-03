@@ -430,7 +430,7 @@
                         
                         const geometry = new THREE.BoxGeometry(0.95, 0.95, 0.95);
                         // Initialize materials with a default dark color for unexposed faces
-                        const materials = Array(6).fill(new THREE.MeshLambertMaterial({ color: 0x333333 }));
+                        const materials = Array(6).fill(null).map(() => new THREE.MeshLambertMaterial({ color: 0x333333 }));
                         
                         const cubePiece = new THREE.Mesh(geometry, materials);
                         cubePiece.position.set(x * 1.1, y * 1.1, z * 1.1);
@@ -476,6 +476,7 @@
                             faceName = 'R';
                             row = 1 - y;
                             col = 1 - z;
+                            materials[faceIdx].color.set(getFaceletColor(faceName, row, col));
                             break;
                         case 1: // Left face
                             faceName = 'L';
