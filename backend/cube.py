@@ -407,6 +407,15 @@ class RubiksCube:
         
         self.move_history.append("F'")
     
+        def get_color_counts(self) -> Dict[int, int]:
+            counts = {color_idx: 0 for color_idx in self.COLORS.keys()}
+            for face in self.faces:
+                for row in face:
+                    for color in row:
+                        counts[color] += 1
+            return counts
+
+    
     def B(self):
         """Back face clockwise rotation."""
         self._rotate_face_clockwise(self.BACK)
